@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8-fullstack-helloworld-client
+  labels:
+    app: k8-fullstack-helloworld
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8-fullstack-helloworld
+  template:
+    metadata:
+      labels:
+        app: k8-fullstack-helloworld
+    spec:
+      containers:
+        - name: pod-info-container
+          image: joshbrusa/k8-fullstack-helloworld-client
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8-fullstack-helloworld-api
+  labels:
+    app: k8-fullstack-helloworld
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8-fullstack-helloworld
+  template:
+    metadata:
+      labels:
+        app: k8-fullstack-helloworld
+    spec:
+      containers:
+        - name: pod-info-container
+          image: joshbrusa/k8-fullstack-helloworld-api
+          ports:
+            - containerPort: 80
